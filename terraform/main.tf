@@ -4,6 +4,7 @@ provider "aws" {
 
 locals {
   service_name  = "service"
+  aws_acc_id    = "094579366022"
   service_stage = terraform.workspace
 
   context = {

@@ -31,6 +31,17 @@ DO NOT FORGET TO CONFIGURE YOUR AWS CREDENTIALS AS YOU WISH. I ADVISE TO USE:
 aws configure
 ```
 
+Add to your Github global variables your AWS credentials: `aws_access_key_id` and `aws_secret_access_key`.
+
+Change `aws_acc_id` and `AWS_ACC_ID` values on `main.tf` and `build.sh` respectively, to your AWS's account id.
+
+Manually create a ECR repository named `service` on the AWS's region you've chosen to deploy you application. The region value must be specified on `main.tf` and `build.sh`.
+
+Container image should be built and pushed to ECR as soon as a commit goes to master and everything above is set up. In case it doesn't work, just run the script deploy.sh with `pipeline` option first, it will build and push the container image to ECR.
+```bash
+./build.sh pipeline
+```
+
 Run the script deploy.sh, it will do the whole job, including the installation of the tools needed.
 ```bash
 ./build.sh deploy

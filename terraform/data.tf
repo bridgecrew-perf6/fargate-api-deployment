@@ -14,10 +14,10 @@ data "template_file" "service_task_template_service" {
   vars = {
     environment      = local.service_stage
     service-name     = local.service_name
+    aws-acc-id       = local.aws_acc_id
     region           = var.aws_region
     environment-vars = data.template_file.service_interpoled_vars.rendered
     lb_dns           = aws_lb.lb.dns_name
     role_arn         = aws_iam_role.iam_role.arn
   }
 }
-

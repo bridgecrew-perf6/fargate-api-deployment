@@ -5,6 +5,7 @@
 
 export CLUSTER="cluster"
 export APP_NAME="service"
+export AWS_ACC_ID="094579366022"
 export REGION=$(find . -iname "terraform.tfvars" | xargs -I {} cat {} | grep -e region | cut -d \= -f2 | sed 's/ "//g;s/"//g')
 
 f_get_lb_dns () {
@@ -105,10 +106,10 @@ f_destroy_infra() {
 }
 
 f_pipeline_deployment() {
-    docker build -f Dockerfile -t 094579366022.dkr.ecr.us-east-1.amazonaws.com/service:latest .
-    $(aws ecr get-login --no-include-email --region us-east-1)
-    docker push 094579366022.dkr.ecr.us-east-1.amazonaws.com/service:latest
-    aws ecs update-service --cluster cluster --region us-east-1 --service service --force-new-deployment
+    docker build -f Dockerfile -t "${AWS_ACC_ID}".dkr.ecr."${REGION}".amazonaws.com/service:latest .
+    $(aws ecr get-login --no-include-email --region ${REGION})
+    docker push "${AWS_ACC_ID}".dkr.ecr."${REGION}".amazonaws.com/service:latest
+    aws ecs update-service --cluster cluster --region "${REGION}" --service service --force-new-deployment
 }
 
 while [ ! -z "$1" ]; do

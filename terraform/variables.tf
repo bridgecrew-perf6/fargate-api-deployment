@@ -77,7 +77,7 @@ variable "dest_cidr_block" {
 }
 
 variable "ingress_cidr_block" {
-  type    = list
+  type    = list(any)
   default = ["0.0.0.0/0"]
 }
 

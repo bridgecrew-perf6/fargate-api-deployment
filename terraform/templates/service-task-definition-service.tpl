@@ -20,7 +20,7 @@
       "environment": ${environment-vars},
       "workingDirectory": "/app",
       "memory": 256,
-      "image": "094579366022.dkr.ecr.${region}.amazonaws.com/${service-name}:latest",
+      "image": "${aws-acc-id}.dkr.ecr.${region}.amazonaws.com/${service-name}:latest",
       "essential": true,
       "name": "${service-name}",
       "networkMode": "awsvpc",
